@@ -1,5 +1,5 @@
 {
-    "name": "angular-cordova",
+    "name": "angular-phonegap",
     "version": "0.0.0",
     "dependencies": {},
     "devDependencies": {

@@ -1,15 +1,13 @@
 'use strict';
 /* jshint unused:false */
 
-angular.module('Cordova', [])
-    .factory('Cordova', function ($q, $rootScope, $document) {
+angular.module('PhoneGap', [])
+    .factory('PhoneGap', function ($q, $rootScope, $document) {
         var deferred = $q.defer();
 
         $document.bind('deviceready', function () {
-            console.log('Device is ready!');
             $rootScope.$apply(deferred.resolve);
         });
-        console.log('Waiting for device...');
 
         return {
             ready: function () {
@@ -17,5 +15,5 @@ angular.module('Cordova', [])
             }
         };
     })
-    .run(function (Cordova) {});
+    .run(function (PhoneGap) {});
 

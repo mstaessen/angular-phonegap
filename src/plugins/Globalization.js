@@ -1,4 +1,4 @@
 'use strict';
 
-angular.module('Cordova')
+angular.module('PhoneGap')
     .factory('Globalization', function () {});

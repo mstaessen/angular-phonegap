@@ -23,8 +23,8 @@ module.exports = function (grunt) {
                     {
                         dot: true,
                         src: [
-                            '.tmp',
-                            '<%= yeoman.dist %>/*',
+                            '!<%= yeoman.dist %>/*',
+                            '!<%= yeoman.dist %>/bower.json',
                             '!<%= yeoman.dist %>/.git*'
                         ]
                     }
@@ -55,8 +55,8 @@ module.exports = function (grunt) {
             },
             dist: {
                 files: {
-                    '<%= yeoman.dist %>/angular-cordova.js': [
-                        '<%= yeoman.src %>/Cordova.js',
+                    '<%= yeoman.dist %>/angular-phonegap.js': [
+                        '<%= yeoman.src %>/PhoneGap.js',
                         '<%= yeoman.src %>/plugins/*.js'
                     ]
                 }
@@ -77,7 +77,7 @@ module.exports = function (grunt) {
         uglify: {
             dist: {
                 files: {
-                    '<%= yeoman.dist %>/angular-cordova.min.js': '<%= yeoman.dist %>/angular-cordova.js'
+                    '<%= yeoman.dist %>/angular-phonegap.min.js': '<%= yeoman.dist %>/angular-phonegap.js'
                 }
             }
         }
