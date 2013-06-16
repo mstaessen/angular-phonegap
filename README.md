@@ -20,9 +20,10 @@ This will make the wrappers available to your application and will register the 
 
 ### Accelerometer
 
-Include `Accelerometer` as a dependency in your controller and use the Cordova/PhoneGap methods. Because the callback
-methods are invoked from outside Angular, you need to use `$scope.$apply`. The method will trigger the callback whenever
-the device is ready.
+Adding `Accelerometer` as a dependency in your controller will enable you to use the methods of the `Accelerometer`
+object. These methods are identical to the Cordova/PhoneGap methods but they will only trigger the callback when the
+device is ready (`deviceready` event). Because the callback methods are invoked from outside Angular, you need to use
+`$scope.$apply`.
 
 ```javascript
 angular.module('myApp')
@@ -43,7 +44,34 @@ angular.module('myApp')
 
 ### Camera
 
-TODO
+Adding `Camera` as a dependency in your controller will enable you to use the methods of the `Camera` object. These
+methods are identical to the Cordova/PhoneGap methods but they will only trigger the callback when the device is ready
+(`deviceready` event). Because the callback methods are invoked from outside Angular, you need to use `$scope.$apply`.
+
+Cordova/PhoneGap uses a couple of constants of a global `Camera` variable. These constants are literaly mirrored in the
+Angular `Camera` wrapper, i.e. `[window.]Camera.EncodingType` (the global constant) is available as
+`Camera.EncodingType` (a property in the Angular `Camera`). The same principle is applied to the other constants.
+
+Example:
+```javascript
+angular.module('myApp')
+    .controller('MyController', function($scope, Camera) {
+        Camera.getPicture(function(image) {
+            $scope.$apply(function() {
+                $scope.imageData = image;
+            });
+        }, function(error) {
+            $scope.$apply(function() {
+                $scope.error = error;
+            });
+        }, {
+            destinationType: Camera.DestinationType.FILE_URL,
+            sourceType: Camera.PictureSourceType.CAMERA,
+            encodingType: Camera.EncodingType.JPEG,
+            quality: 50
+        });
+    });
+```
 
 ### Capture
 
@@ -51,10 +79,11 @@ TODO
 
 ### Compass
 
-Include `Compass` as a dependency in your controller and use the Cordova/PhoneGap methods. Because the callback
-methods are invoked from outside Angular, you need to use `$scope.$apply`. The method will trigger the callback whenever
-the device is ready.
+Adding `Compass` as a dependency in your controller will enable you to use the methods of the `Compass` object. These
+methods are identical to the Cordova/PhoneGap methods but they will only trigger the callback when the device is ready
+(`deviceready` event). Because the callback methods are invoked from outside Angular, you need to use `$scope.$apply`.
 
+Example:
 ```javascript
 angular.module('myApp')
     .controller('MyController', function($scope, Compass) {
@@ -78,10 +107,12 @@ TODO
 
 ### Geolocation
 
-Include `Geolocation` as a dependency in your controller and use the Cordova/PhoneGap methods. Because the callback
-methods are invoked from outside Angular, you need to use `$scope.$apply`. The method will trigger the callback whenever
-the device is ready.
+Adding `Geolocation` as a dependency in your controller will enable you to use the methods of the `Geolocation` object.
+These methods are identical to the Cordova/PhoneGap methods but they will only trigger the callback when the device is
+ready (`deviceready` event). Because the callback methods are invoked from outside Angular, you need to use
+`$scope.$apply`.
 
+Example:
 ```javascript
 angular.module('myApp')
     .controller('MyController', function($scope, Geolocation) {
