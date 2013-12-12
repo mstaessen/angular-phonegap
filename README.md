@@ -116,7 +116,7 @@ Example:
 ```javascript
 angular.module('myApp')
     .controller('MyController', function($scope, Geolocation) {
-        Accelerometer.getCurrentAcceleration(function(position) {
+        Geolocation.getCurrentAcceleration(function(position) {
             $scope.$apply(function() {
                 $scope.position = position;
             });
