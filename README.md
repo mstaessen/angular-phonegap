@@ -140,7 +140,7 @@ angular.module('myApp')
 
         // ...
 
-        ft.upload(fileURL, destinationURL, false, options).then(function(res) {
+        ft.upload(fileURL, destinationURL, options, true).then(function(res) {
 
             $scope.message = 'Uploaded ' + res.bytesSent +  ' bytes!';
 
