@@ -130,6 +130,38 @@ angular.module('myApp')
     });
 ```
 
+### FileTransfer
+The `FileTransfer` service works similarly to the PhoneGap/Cordova version, except that the `upload` and `download` methods return promises. The `FileTransferError` service exports the PhoneGap `FileTransferError` error codes.
+
+```javascript
+angular.module('myApp')
+    .controller('MyController', function($scope, FileTransfer, FileTransferError) {
+        var ft = new FileTransfer();
+
+        // ...
+
+        ft.upload(fileURL, destinationURL, options, true).then(function(res) {
+
+            $scope.message = 'Uploaded ' + res.bytesSent +  ' bytes!';
+
+        }, function(error) {
+
+            if (error.code === FileTransferError.ABORT_ERR) {
+                $scope.message = 'Uploading aborted!';
+            } else {
+                $scope.message = 'Error while uploading!';
+            }
+
+        }, function(progress) {
+
+            $scope.loaded = progress.loaded;
+
+        });
+
+    });
+
+```
+
 ### Globalization
 
 TODO
